@@ -5,6 +5,7 @@ Created on Sun Nov 10 21:42:00 2019
 @author: yavuz
 """
 from Read_lokasyon import NodeRead as lokasyonOku
+from simulated_algo import SimulatedAnnealing
 
 def main():
     '''parametreler'''
@@ -16,7 +17,7 @@ def main():
     """Read location"""
     cities = lokasyonOku("dataset/krB100.tsp.txt").generate()
     
-
+    SimAnni = SimulatedAnnealing(cities, T, colling_faktor, stopping_T, stopping_iter)
 
 
 
