@@ -4,7 +4,7 @@ Created on Sun Nov 10 21:42:00 2019
 
 @author: yavuz
 """
-
+from Read_lokasyon import NodeRead as lokasyonOku
 
 def main():
     '''parametreler'''
@@ -12,6 +12,10 @@ def main():
     stopping_T = 0.0001
     colling_faktor = 0.9995
     stopping_iter = 10000000
+
+    """Read location"""
+    cities = lokasyonOku("dataset/krB100.tsp.txt").generate()
+    
 
 
 

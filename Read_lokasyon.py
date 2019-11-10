@@ -9,7 +9,7 @@ import random
 import numpy as np
 
 
-class NodeGenerator:
+class NodeRead:
     def __init__(self,path):
         x=[]
         y=[]
