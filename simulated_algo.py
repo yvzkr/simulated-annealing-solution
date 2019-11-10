@@ -7,8 +7,9 @@ Created on Sun Nov 10 22:14:33 2019
 
 import math
 import random
+import matplotlib.pyplot as plt
 import tsp_utils
-
+import animated_visualizer
 
 
 class SimulatedAnnealing:
@@ -59,6 +60,10 @@ class SimulatedAnnealing:
         return sum([self.dist_matrix[i, j] for i, j in zip(sol, sol[1:] + [sol[0]])])
 
     def acceptance_probability(self, candidate_weight):
+        '''
+        Acceptance probability as described in:
+        https://stackoverflow.com/questions/19757551/basics-of-simulated-annealing-in-python
+        '''
         return math.exp(-abs(candidate_weight - self.curr_weight) / self.temp)
 
     def accept(self, candidate):
@@ -83,6 +88,7 @@ class SimulatedAnnealing:
     def anneal(self):
         '''
         Annealing process with 2-opt
+        described here: https://en.wikipedia.org/wiki/2-opt
         '''
         while self.temp >= self.stopping_temp and self.iteration < self.stopping_iter:
             candidate = list(self.curr_solution)
@@ -101,3 +107,14 @@ class SimulatedAnnealing:
         print('Improvement: ',
               round((self.initial_weight - self.min_weight) / (self.initial_weight), 4) * 100, '%')
 
+    def animateSolutions(self):
+        animated_visualizer.animateTSP(self.solution_history, self.coords)
+
+    def plotLearning(self):
+        plt.plot([i for i in range(len(self.weight_list))], self.weight_list)
+        line_init = plt.axhline(y=self.initial_weight, color='r', linestyle='--')
+        line_min = plt.axhline(y=self.min_weight, color='g', linestyle='--')
+        plt.legend([line_init, line_min], ['Initial weight', 'Optimized weight'])
+        plt.ylabel('Weight')
+        plt.xlabel('Iteration')
+        plt.show()
