@@ -7,18 +7,24 @@ Created on Sun Nov 10 21:42:00 2019
 from Read_lokasyon import NodeRead as lokasyonOku
 from simulated_algo import SimulatedAnnealing
 
+
 def main():
     '''parametreler'''
-    T = 100000
-    stopping_T = 0.001
-    colling_faktor = 0.99
-    stopping_iter = 1000
+    temp = 1000
+    stopping_temp = 0.00000001
+    alpha = 0.9995
+    stopping_iter = 10000000
 
     """Read location"""
-    cities = lokasyonOku("dataset/bier127.txt").generate()
+    cities = lokasyonOku("dataset/krB100.tsp.txt").generate()
     
-    SimAnni = SimulatedAnnealing(cities, T, colling_faktor, stopping_T, stopping_iter)
+    SimAnni = SimulatedAnnealing(cities, temp, alpha, stopping_temp, stopping_iter)
+    SimAnni.anneal()
+    '''animate'''
+    SimAnni.animateSolutions()
 
+    '''show the improvement over time'''
+    SimAnni.plotLearning()
 
 
 if __name__ == "__main__":
