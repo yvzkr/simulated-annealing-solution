@@ -10,12 +10,12 @@ from simulated_algo import SimulatedAnnealing
 def main():
     '''parametreler'''
     T = 100000
-    stopping_T = 0.0001
-    colling_faktor = 0.9995
-    stopping_iter = 10000000
+    stopping_T = 0.001
+    colling_faktor = 0.99
+    stopping_iter = 1000
 
     """Read location"""
-    cities = lokasyonOku("dataset/krB100.tsp.txt").generate()
+    cities = lokasyonOku("dataset/bier127.txt").generate()
     
     SimAnni = SimulatedAnnealing(cities, T, colling_faktor, stopping_T, stopping_iter)
 
