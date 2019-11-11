@@ -27,6 +27,7 @@ def calculateStatic(data):
     print("Worst",max(data))
     print("Mean of the ",len(data), "results", statistics.mean(data))
     print("Median of the ",len(data),"results", statistics.median(data))
+    print("Standart Deviation of the ",len(data),"results", statistics.stdev(data))
     coloredPrint(data.index(min(data)),data.index(max(data)),data)
     
 
