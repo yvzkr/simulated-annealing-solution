@@ -21,6 +21,7 @@ def nearestNeighbourSolution(dist_matrix):
     '''
     Computes the initial solution (nearest neighbour strategy)
     '''
+    #random seçim
     node = random.randrange(len(dist_matrix))
     result = [node]
 

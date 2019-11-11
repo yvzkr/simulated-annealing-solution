@@ -68,6 +68,7 @@ class SimulatedAnnealing:
 
     def accept(self, candidate):
         '''
+        Aday çözüm mevcut çözümden daha iyiyse, olasılık 1 ile kabul edin, yoksa acceptance_probability'a eşit olasılık ile kabul edin.
         Accept with probability 1 if candidate solution is better than
         current solution, else accept with probability equal to the
         acceptance_probability()

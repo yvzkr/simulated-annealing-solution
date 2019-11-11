@@ -7,24 +7,41 @@ Created on Sun Nov 10 21:42:00 2019
 from Read_lokasyon import NodeRead as lokasyonOku
 from simulated_algo import SimulatedAnnealing
 
+import statistics
+
+def calculateStatic(data):
+    print("Best:",min(data))
+    print("Worst",max(data))
+    print("Mean of the ",len(data), "results", statistics.mean(data))
+    print("Median of the ",len(data),"results", statistics.median(data))
+    
+
 
 def main():
-    '''parametreler'''
-    temp = 1000
-    stopping_temp = 0.00000001
-    alpha = 0.9995
-    stopping_iter = 10000000
+    
+    '''param'''
+    temp = 100000
+    stopping_temp = 0.001
+    alpha = 0.9999
+    stopping_iter = 100000
 
     """Read location"""
-    cities = lokasyonOku("dataset/krB100.tsp.txt").generate()
+    cities = lokasyonOku("dataset/krE100.txt").generate()
     
-    SimAnni = SimulatedAnnealing(cities, temp, alpha, stopping_temp, stopping_iter)
-    SimAnni.anneal()
-    '''animate'''
-    SimAnni.animateSolutions()
+    results=[]
+    for i in range(10):
+        SimAnni = SimulatedAnnealing(cities, temp, alpha, stopping_temp, stopping_iter)
+        SimAnni.anneal()
+        results.append(SimAnni.min_weight)
+        '''animate'''
+        SimAnni.animateSolutions()
+    
+        '''show the improvement over time'''
+        SimAnni.plotLearning()
+        
+        
+    calculateStatic(results)
 
-    '''show the improvement over time'''
-    SimAnni.plotLearning()
 
 
 if __name__ == "__main__":
