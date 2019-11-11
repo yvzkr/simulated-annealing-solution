@@ -8,12 +8,26 @@ from Read_lokasyon import NodeRead as lokasyonOku
 from simulated_algo import SimulatedAnnealing
 
 import statistics
+from colorama import Fore
+
+def coloredPrint(bestIndex,worstIndex,data):
+    for (index, x) in enumerate(data):
+        if(index == bestIndex):
+            print(Fore.MAGENTA + str(x))
+        elif index==worstIndex:
+            print(Fore.RED+str(x))
+        else:
+            print(Fore.BLACK+str(x))
+
+    
+
 
 def calculateStatic(data):
     print("Best:",min(data))
     print("Worst",max(data))
     print("Mean of the ",len(data), "results", statistics.mean(data))
     print("Median of the ",len(data),"results", statistics.median(data))
+    coloredPrint(data.index(min(data)),data.index(max(data)),data)
     
 
 
